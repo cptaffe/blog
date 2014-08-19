@@ -1,0 +1,28 @@
+<h2>First!: Basilisk</h2>
+<article>
+	<p>
+		Following in the footsteps of many enthusiastic YouTube comments, the next few articles are part of the first ever blog post on this site.
+	</p>
+</article>
+<article>
+	<h3>Intro</h3>
+	<p>
+		Over the summer I began getting into compiler design. My first successful build was a sort of interpreter that ran in a eval-print loop written in Go.
+	</p> <p>
+		I ended up naming it Basilisk. Some of it's cool parts were that it supported scopes, lazy evaluation, and implicit types (ex: "string" is a string, 8 is an int).
+	</p>
+	<h3>First Attempts: Go</h3>
+	<p>
+		It [<a href="//github.com/cptaffe/lang">lib</a>][<a href="//github.com/cptaffe/basilisk">cmd</a>] was made up of three pieces, a concurrent lexer/parser where the lexer sent tokens over a channle and the parser assembled them into a tree. The tree (Abstract Syntax Tree) was then returned and evaluated using a number of somewhat mutually recursive functions.
+	</p> <p>
+		These functions all had the same function signature and were called by each other. For example "(+ v 2)" would be evaluated by eval(), which would call keys() for the plus operator, which called evalSubs(), which called eval() for each of the operands, which would call var() for the 'v', which would replace 'v' with its value if there was one. If not, it would return nil, halting the recursive-ish evaluating and returning all the way up.
+	</p>
+	<h3>Adventures in C</h3>
+	<p>
+		Following this attempt, I decided to try to get a working interpreter running in C. Also, since C supports inline assembly and I'm taking an assembly class, I could get a simple assembler working.
+	</p> <p>
+		Success in this regard has been less obvious. After chasing down a memory bug for two days, I have gained considerable experience in C. I have built several [<a href="//github.com/cptaffe/basilisk-c">1</a>][<a href="//github.com/cptaffe/basilisk-v2">2</a>] semi-functional interpreters and then restarted. Most recently I have adopted the bsk_list_eval() type naming scheme to emulate namespaces (darn you C!). My current iteration is a combined lexer/parser that generates a linked list.
+	</p> <p>
+		A linked list is possible with a set number of arguments, basically treating basilisk like plain polish notation. BTW, Basilisk is a lisp-like langauge which I have recently written a basic <a href="//github.com/cptaffe/basilisk-v2/blob/master/Language%20Spec">specification</a> for in EBNF. For example "(+ 1 2)" turns into +,1,2 which basically means instead of in a tree where there is no limit to arguments, this allows only a set number. A way around this is to include delimiter tokens, but that sort of uglies it up. I have yet to decide if I will pursue this design further.
+	</p>
+</article>

@@ -9,8 +9,10 @@
 		<!-- Lame JavaScript -->
 
 		<script>
-		var sites = ["Ramblings", "Projects"];
-		var index = Math.round(Math.random() * (sites.length - 1));
+		var sites = [
+		"18-8-14"
+		];
+		var index = sites.length - 1;
 
 		function loadPage(str) {
 			var page = $("#viewer-thingy");
@@ -73,11 +75,7 @@
 		<h2>print("Hello!");</h2>
 		<article>
 			<p>
-				Welcome, here are a couple of pages you might be interested in:
-			</p> <p>
-				<a id="Ramblings" onclick="loadPage('Ramblings');">Ramblings</a>: a page of poorly written stuffs.
-			</p> <p>
-				<a id="Projects" onclick="loadPage('Projects');">Projects</a>: a page of more poorly written stuffs, this time with code.
+				Welcome, here follows some chronological blog posts created for Freshman Year Experience at UALR. It'll totally be interesting, maybe.
 			</p>
 		</article>
 		<div id="buttons">

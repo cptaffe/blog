@@ -32,6 +32,7 @@ article {
   margin-bottom: 20px;
   margin-left: 20px; }
   article p {
+    line-height: 150%;
     margin: 10px 0;
     font-size: 15px; }
 
