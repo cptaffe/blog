@@ -9,36 +9,6 @@
 		<!-- Lame JavaScript -->
 
 		<script>
-		// konami
-		var konami = 0;
-		function konami_code(e) {
-			if (konami < 2) {
-				if(e.which == 38){konami++;} // up, up
-				else {konami = 0;}
-			} else if (konami >= 2 && konami < 4) {
-				if(e.which == 40){konami++;} // down, down
-				else {konami = 0;}
-			} else if (konami == 4 || konami == 6) {
-				if(e.which == 37){konami++;} // left
-				else {konami = 0;}
-			} else if (konami == 5 || konami == 7) {
-				if(e.which == 39){konami++;} // right
-				else {konami = 0;}
-			} else if (konami == 8) {
-				if(e.which == 66){konami++;} // B
-				else {konami = 0;}
-			} else if (konami == 9) {
-				if(e.which == 65){konami++;} // A
-				else {konami = 0;}
-			} else if (konami == 10) {
-				if (e.which == 13) {
-					loadPage("Konami");
-					$("#num").html("konami(↑↑↓↓←→←→ba↩)");
-					konami = 0;
-				}
-			}
-		}
-
 		var sites = ["Ramblings", "Projects"];
 		var index = Math.round(Math.random() * (sites.length - 1));
 
@@ -81,10 +51,6 @@
 
 			        case 39: // right
 			        nextPage();
-			        break;
-
-			        case 38: // first konami code char
-			        if (konami == 0){konami_code(e);}
 			        break;
 
 			        default: return; // exit this handler for other keys
