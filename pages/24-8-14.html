@@ -23,8 +23,8 @@
 	</p> <p>
 		The problem is really cuased because in Linux programs have a static stack size allocated at runtime, but since my program was creating a stack of 60 million frames (to overflow the -O3 version), it ran out of memory.
 	</p>
-	<h3>Conclusion</h3>
+	<h3>Solution</h3>
 	<p>
-		I have yet to find a way to dynamically expand the stack in a POSIX compatible way, but I will fix it eventually.
+		I solved this issue by rewriting my recursive print in iterative form, which clang apparently did not optimize although it was in tail-call form.
 	</p>
 </article>
