@@ -1,0 +1,30 @@
+<h2>Recursive C++: Importance of Tail Calls</h2>
+<article>
+	<p>
+		The following describes a segfault error I ran upon while writing a highly recursive program for generating a dynamic list (linked-list) of prime numbers.
+	</p>
+</article>
+<article>
+	<h3>Intro</h3>
+	<p>
+		For Data Structures & Algorithms, I had an assignment dealing with generating prime numbers below an input value. This was to be done with a dynamically resizable medium, so I chose a linked list.
+	</p><p>
+		There are two ways to do operations on linked lists, iteratively and recursively. For example, you can iterate over a linked list similar to the way you would an array, or you can recursively self-call with the next linked item and do the same.
+	</p> 
+	<h3>Recursion Issues</h3>
+	<p>
+		Being awesome and whatnot, I chose recursion, using the Atkin Seive to generate primes. At first I used a really junky non-optimized prime generator, but the Atkin Sieve is so much faster. For instance, a 6 million and below prime generation takes several seconds in the super-naive version, and is almost instant with the Atkin Seive.
+	</p> <p>
+		Back to recursion. My implementation was working perfectly until I entered 6 million only to be hit with a segfault. It took me a while to come to the conclusion that it was not my code, but perhaps too many stack frames.
+	</p>
+	<h3>Solution with Tail Recursion Optimization</h3>
+	<p>
+		To test this, I compiled my program with -O3 (which recognizes tail recursion and modifies it to iterative form) and tried 6 million. It worked.
+	</p> <p>
+		To ensure that the tail recursion optimization was causing the problem, I used -S to output the assembly code and found that the -O3 version had comments mentioning tail recursion optimization while the normal (-O2 default) version did not.
+	</p>
+	<h3>Conclusion</h3>
+	<p>
+		Personally, I was not aware that one could run into a segfault merely by using too many stack frames. It may be a bug in either clang or Linux. idk.
+	</p>
+</article>
