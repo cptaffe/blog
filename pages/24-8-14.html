@@ -1,4 +1,4 @@
-<h2>Recursive C++: Importance of Tail Calls</h2>
+<h2>Recursive C++: Attack of the Static Stack Size</h2>
 <article>
 	<p>
 		The following describes a segfault error I ran upon while writing a highly recursive program for generating a dynamic list (linked-list) of prime numbers.
@@ -21,10 +21,10 @@
 	<p>
 		To test this, I compiled my program with -O3 (which recognizes tail recursion and modifies it to iterative form) and tried 6 million. It worked.
 	</p> <p>
-		To ensure that the tail recursion optimization was causing the problem, I used -S to output the assembly code and found that the -O3 version had comments mentioning tail recursion optimization while the normal (-O2 default) version did not.
+		The problem is really cuased because in Linux programs have a static stack size allocated at runtime, but since my program was creating a stack of 60 million frames (to overflow the -O3 version), it ran out of memory.
 	</p>
-	<h3>Conclusion</h3>
+	<h3>Solution</h3>
 	<p>
-		Personally, I was not aware that one could run into a segfault merely by using too many stack frames. It may be a bug in either clang or Linux. idk.
+		I solved this issue by rewriting my recursive print in iterative form, which clang apparently did not optimize although it was in tail-call form.
 	</p>
 </article>
