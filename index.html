@@ -50,11 +50,11 @@
 			} else {
 				switch(e.which) {
 			        case 37: // left
-			        prevPage();
+			        nextPage();
 			        break;
 
 			        case 39: // right
-			        nextPage();
+			        prevPage();
 			        break;
 
 			        default: return; // exit this handler for other keys
@@ -81,8 +81,8 @@
 			</p>
 		</article>
 		<div id="buttons">
-			<div onclick="prevPage();">prev</div>
-			<div onclick="nextPage();">next</div>
+			<div onclick="nextPage();">&lt</div>
+			<div onclick="prevPage();">&gt</div>
 			<div id="num"></div>
 		</div>
 
