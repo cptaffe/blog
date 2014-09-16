@@ -24,6 +24,12 @@
 				// timestamp to combat caching
 				page.load("pages/"+str+".html?time="+new Date().getTime(), function () {
 					page.fadeIn(300);
+
+					// automatically append date
+					var date = document.createElement("div");
+					date.id = "date";
+					date.innerText = str.split('-').join('.');
+					$("#tags").prepend(date);
 				});
 			});
 		}
@@ -81,8 +87,8 @@
 			</p>
 		</article>
 		<div id="buttons">
-			<div onclick="nextPage();">&lt</div>
-			<div onclick="prevPage();">&gt</div>
+			<div onclick="nextPage();">&lt-</div>
+			<div onclick="prevPage();">-&gt</div>
 			<div id="num"></div>
 		</div>
 
