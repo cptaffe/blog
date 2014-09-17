@@ -28,7 +28,7 @@
 					// automatically append date
 					var date = document.createElement("div");
 					date.id = "date";
-					date.innerText = str.split('-').join('.');
+					date.innerText = str.split('-').slice(0,3).join('.');
 					$("#tags").prepend(date);
 				});
 			});
