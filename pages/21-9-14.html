@@ -22,7 +22,7 @@
 	</p>
 	<h3>Passwords are dead</h3>
 	<p>
-		Passwords are basically dead. Normally, a password is hashed and stored in a database. In a legit operation, the password is appended with a salt before being hashed, and the salt is fairly long. This prevents someone from looking up the sha256 of "password" and finding that he can now access 45 accounts. Salting passwords prevents an attack known as "rainbow tables", where an attacker trades space for computational power by storing thousands of hashes for the most common passwords. These can come from computation, or a big break of many accounts.
+		Passwords are basically dead. Normally, a password is hashed and stored in a database. In a legit operation, the password is appended with a salt before being hashed, and the salt is fairly long. This prevents someone from looking up the sha256 of "password" and finding that he can now access 45 accounts. If your database is properly secured, this is impossible. Salting passwords prevents an attack using "rainbow tables", where an attacker trades space for computational power by storing thousands of hashes for the most common passwords. These can come from computation, or a big break of many accounts.
 	</p> <p>
 		The problem is, if I want to just get into an account, not even a specific account, I can poll some database with common passwords until one works, this is the brute force attack. The standard brute force attack uses every password, ex: "0", "1", etc. every possible combination. This is sort of dumb, and the newest attacks use lists of the most common passwords. These attacks can be very effective and if they are accounts like a bank, or facebook, or a similar site, they can extract private data or funds.
 	</p> 
@@ -47,5 +47,19 @@
 		A neat feature of tor is its <em>hidden services</em>, or services served only within the tor network. There's a great tutorial at <a href="http://unethicalblogger.com/2012/06/13/ssh-as-a-hidden-service.html">unethical blogger</a>, which shows how to edit tor and ssh conf files to set up this service.
 	</p> <p>
 		Once we get a tor port forwarded to our local port which ssh is listening on, we can login via ssh over tor. In the tutorial you should have set up ssh to route *.onion addresses through netcat to tor. This not only gives us a nice url, but it keeps your server and client anonymous.
+	</p>
+	<h3>SSH keys</h3>
+	<p>
+		Using secure ssh keys is also important. If someone cracks your ssh key, they can gain access to your machine. Ssh keys are used to allow yourself or another computer access to your machine, bypassing the normal password block. This is convenient and secure as long as your ssh key can't be cracked. So why not generate a strong ssh key, as well as use a secure password. Personally, I use a 521 bit ECDSA, which has a security level of around 250, meaning an attacker would need 2^250 (115792089237316195423570985008687907853269984665640564039457584007913129639936) operations to crack it.
+	</p> <p>
+		Realistically, a 1024 bit RSA is pretty secure. There are several reports of it being "cracked", but these are based on a University of Michigan paper using manipulation of the power supply to hardware fault and change individual bits of the rsa key. If you're worried try a 2048 or 4096 length one. Or try a much shorter ECDSA, they provide the same difficulty at a smaller bit length.
+	</p>
+	<h3>Encrypted hdd</h3>
+	<p>
+		Many linux distros provide a gui at install that allows encryption of the entire disk or home directory. In case of someone gaining access to your physical machine, an encrypted hdd will make it impossible to boot, while an encrypted home directory will make it impossible to access your files, without a password.
+	</p>
+	<h3>Conclusion</h3>
+	<p>
+		Do you need this much security? Probably not. But whatevs.
 	</p>
 </article>
