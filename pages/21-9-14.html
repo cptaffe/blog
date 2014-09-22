@@ -1,0 +1,43 @@
+
+<!-- Title and intro -->
+<h2>Linux Security</h2>
+<article>
+	<p>
+		This is a brief overview of some security stuff I've been messing with recently.
+	</p>
+</article>
+
+<!-- Tags -->
+<div id="tags">
+	<div>#Security</div>
+	<div>#TwoFactor</div>
+	<div>#Tor</div>
+</div>
+
+<!-- Body Parts -->
+<article>
+	<h3></h3>
+	<p>
+		Security is always awesome. Not only do you feel like a badass, but you also protect yourself from (perhaps nonexistant) threats.
+	</p>
+	<h3>Passwords are dead</h3>
+	<p>
+		Passwords are basically dead. Normally, a password is hashed and stored in a database. In a legit operation, the password is appended with a salt before being hashed, and the salt is fairly long. This prevents someone from looking up the sha256 of "password" and finding that he can now access 45 accounts. Salting passwords prevents an attack known as "rainbow tables", where an attacker trades space for computational power by storing thousands of hashes for the most common passwords. These can come from computation, or a big break of many accounts.
+	</p> <p>
+		The problem is, if I want to just get into an account, not even a specific account, I can poll some database with common passwords until one works, this is the brute force attack. The standard brute force attack uses every password, ex: "0", "1", etc. every possible combination. This is sort of dumb, and the newest attacks use lists of the most common passwords. These attacks can be very effective and if they are accounts like a bank, or facebook, or a similar site, they can extract private data or funds.
+	</p> 
+	<h3>Why two factor</h3>
+	<p>
+		Why is two factor authentication so awesome? Well, if you use something like Google Auth or sms to recieve a second factor for login or authentication, you now have to crack two things. This inherently increases difficulty. Not only that, but usually this other factor is based on a shared key with the site. This key is used to produce a HMAC-SHA1 which is a hash which involves the key and a second variables such as the number of 30 second periods since Unix epoch.
+	</p> <p>
+		This means that every 30 seconds (using the Google Auth or the open source <a href="https://github.com/kaie/otp-authenticator-android">OTP Auth</a>, android binary found <a href="https://kuix.de/android/otp-authenticator/">here</a>, apps) you will have a new time based key. This makes trying to hack into an account much more difficult.
+	</p>
+	<h3>Enabling two factor</h3>
+	<p>
+		Want to enable two factor authentication? Check if your service supports it at <a href="https://twofactorauth.org/">twofactorauth.org</a>. Using a Time-based One-time password (TOTP) app such as Google Auth you can scan a QR code provided by said service and begin using Two Factor Authentication.
+	</p>
+	<h3>Two Factor on Linux</h3>
+	<p>
+		Ever wanted two factor authentication on your ssh server? Well google has you covered with <a href="https://code.google.com/p/google-authenticator/">google-authenticator</a>, a pam module you can quickly compile and implement on any user. The program can be used to create a key and QR code (or url to one) where your Google Auth app can scan it. By editing a few pam.d files you can quickly add two factor authentication to your Ubuntu login, su command (make sure to run google-auth and create a key for your root account), sudo command, etc.
+	</p>
+</article>
