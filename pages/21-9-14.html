@@ -40,4 +40,12 @@
 	<p>
 		Ever wanted two factor authentication on your ssh server? Well google has you covered with <a href="https://code.google.com/p/google-authenticator/">google-authenticator</a>, a pam module you can quickly compile and implement on any user. The program can be used to create a key and QR code (or url to one) where your Google Auth app can scan it. By editing a few pam.d files you can quickly add two factor authentication to your Ubuntu login, su command (make sure to run google-auth and create a key for your root account), sudo command, etc.
 	</p>
+	<h3>Secure Shell, now more secure</h3>
+	<p>
+		The tor network has aggregated an unfortunate connotation in some circles. In reality, it's just an anonymous decentralized network. Tor is perfectly legal and is protected by several laws. It is just a network, niether encryption or transmitting network traffic is illegal. For an overview of tor, look <a href="https://www.torproject.org/about/overview.html.en">here</a>.
+	</p> <p>
+		A neat feature of tor is its <em>hidden services</em>, or services served only within the tor network. There's a great tutorial at <a href="http://unethicalblogger.com/2012/06/13/ssh-as-a-hidden-service.html">unethical blogger</a>, which shows how to edit tor and ssh conf files to set up this service.
+	</p> <p>
+		Once we get a tor port forwarded to our local port which ssh is listening on, we can login via ssh over tor. In the tutorial you should have set up ssh to route *.onion addresses through netcat to tor. This not only gives us a nice url, but it keeps your server and client anonymous.
+	</p>
 </article>
